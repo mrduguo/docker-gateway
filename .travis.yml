@@ -7,4 +7,5 @@ services:
 
 script:
 - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-- dockerTag=mrduguo/docker-gateway ./gradlew -x test
+- docker run -d --net=host --name consul-standalone consul:v0.7.0 agent -dev -client 0.0.0.0
+- dockerTag=mrduguo/docker-gateway ./gradlew
