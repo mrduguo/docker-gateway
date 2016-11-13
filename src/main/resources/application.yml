@@ -1,0 +1,22 @@
+consul.host: localhost
+gateway.host: localhost
+
+spring:
+  application.name: gateway
+  cloud:
+    consul:
+      host: ${consul.host}
+      discovery:
+        hostname: ${gateway.host}
+        healthCheckPath: ${management.context-path}/health
+        healthCheckInterval: 15s
+        instanceId: ${spring.application.name}:${spring.application.instance_id:${spring.cloud.consul.discovery.hostname}:${server.port}}
+
+server.port: 80
+management.context-path: /serviceability
+zuul:
+  ignored-services: "consul*"
+  routes:
+    consul:
+      path: /consul/**
+      url: http://${consul.host}:8500
