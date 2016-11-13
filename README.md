@@ -3,6 +3,7 @@
 
 ## Run The Docker Image
 
+* require consul running at localhost:8500
 
     docker run -it --rm --net=host mrduguo/docker-gateway
 
@@ -12,6 +13,8 @@ Then the gateway can be accessed from:
 
 
 ## Sample Build Command
+
+* require consul running at 192.168.99.100:8500
 
 #### Build Artifact Locally
 
